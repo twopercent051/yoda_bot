@@ -3,4 +3,7 @@ from aiogram.fsm.state import State, StatesGroup
 
 class AdminFSM(StatesGroup):
     home = State()
-    get_kw = State()
+    title_award = State()
+    description_award = State()
+    photo_award = State()
+    price_award = State()

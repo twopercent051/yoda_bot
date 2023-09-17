@@ -1,28 +1,23 @@
+from typing import List
+
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 
 class InlineKeyboard:
 
-    @classmethod
-    def main_menu_kb(cls):
-        keyboard = [[InlineKeyboardButton(text='Ключевые слова', callback_data='keywords')]]
-        keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard)
-        return keyboard
+    def __init__(self):
+        self._home_button = InlineKeyboardButton(text="🏡 На главную", callback_data="home")
 
-    @classmethod
-    def home_kb(cls):
-        keyboard = [[InlineKeyboardButton(text='🏡 Домой', callback_data='home')]]
-        keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard)
-        return keyboard
+    def home_kb(self):
+        keyboard = [[self._home_button]]
+        return InlineKeyboardMarkup(inline_keyboard=keyboard)
 
-    @classmethod
-    def kw_kb(cls):
+    @staticmethod
+    def awards_menu_kb():
         keyboard = [
-            [
-                InlineKeyboardButton(text='Ключевые слова', callback_data='keywords'),
-                InlineKeyboardButton(text='🏡 Домой', callback_data='home')
-            ]
+            [InlineKeyboardButton(text="📝 Список вознаграждений", callback_data="get_awards")],
+            [InlineKeyboardButton(text="💡 Обменять баллы", callback_data="withdrawal_balance")],
         ]
-        keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard)
-        return keyboard
+        return InlineKeyboardMarkup(inline_keyboard=keyboard)
+
