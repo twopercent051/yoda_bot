@@ -51,6 +51,8 @@ __pypackages__/
 
 # Environments
 .venv
+.env
+google.json
 env/
 venv/
 ENV/
