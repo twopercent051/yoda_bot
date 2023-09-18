@@ -40,7 +40,7 @@ class GoogleSheets:
     def get_user_data(self, phone: str) -> dict:
         all_users = self.__get_list()
         for user in all_users:
-            if phone[2:] == str(user[0]):
+            if phone[-10:] == str(user[0]):
                 data = dict(name=user[1], balance=user[2], status=user[6])
                 return data
         return

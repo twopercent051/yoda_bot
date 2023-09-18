@@ -92,9 +92,7 @@ async def main_block(message: Message):
 @router.message(F.contact)
 async def main_block(message: Message):
     username = f"@{message.from_user.username}" if message.from_user.username else "---"
-    phone = message.contact.phone_number
-    phone = f"+{phone}" if len(str(phone)) == 10 else str(phone)
-    await UsersDAO.create(user_id=str(message.from_user.id), username=username, phone=phone)
+    await UsersDAO.create(user_id=str(message.from_user.id), username=username, phone=message.contact.phone_number)
     await user_balance_render(user_id=message.from_user.id, phone=message.contact.phone_number)
 
 
