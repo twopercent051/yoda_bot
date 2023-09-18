@@ -46,6 +46,12 @@ class GoogleSheets:
         return
 
 
-if __name__ == "__main__":
+async def test():
     google_sheet = GoogleSheets()
-    asyncio.run(google_sheet.get_user_data(phone="123"))
+    a = google_sheet.get_user_data(phone="+79124476847")
+    print(a)
+
+
+if __name__ == "__main__":
+
+    asyncio.run(test())
