@@ -30,9 +30,9 @@ class GoogleSheets:
             row_data = []
             for cell in row["values"]:
                 value = 0
-                if cell.__contains__("userEnteredValue"):
-                    for k, v in cell["userEnteredValue"].items():
-                        value = v
+                print(cell)
+                if cell.__contains__("formattedValue"):
+                    value = cell["formattedValue"]
                 row_data.append(value)
             result.append(row_data)
         return result
