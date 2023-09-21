@@ -1,4 +1,5 @@
 import asyncio
+import os
 
 from apiclient import discovery
 from google.oauth2 import service_account
@@ -14,7 +15,8 @@ class GoogleSheets:
             "https://www.googleapis.com/auth/drive.file",
             "https://www.googleapis.com/auth/spreadsheets"
         ]
-        self.secret_file = config.google.secret_file
+        # self.secret_file = config.google.secret_file
+        self.secret_file = f"{os.getcwd()}/google.json"
         self.credentials = service_account.Credentials.from_service_account_file(self.secret_file, scopes=self.scopes)
         self.service = discovery.build('sheets', 'v4', credentials=self.credentials)
         self.sheet_name = config.google.sheet_name
