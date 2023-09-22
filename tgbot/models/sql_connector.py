@@ -31,7 +31,6 @@ class AwardsDB(Base):
     title = Column(String, nullable=False)
     photo_id = Column(String, nullable=False)
     description = Column(TEXT, nullable=True)
-    price = Column(Integer, nullable=False)
 
 
 class BaseDAO:
