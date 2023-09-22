@@ -52,7 +52,6 @@ async def main_block(callback: CallbackQuery):
         text = [
             f"<u>{award_profile['title']}</u>\n",
             award_profile["description"],
-            f"\n<b>Цена:</b> {award_profile['price']}",
             write_downs_dict[award_profile["type_award"]]
         ]
         kb = inline.delete_award_kb(award_id=award_id)
@@ -107,29 +106,13 @@ async def main_block(message: Message, state: FSMContext):
     await message.answer(text, reply_markup=kb)
 
 
-@router.message(F.photo, AdminFSM.photo_award)
-async def main_block(message: Message, state: FSMContext):
-    await state.update_data(photo=message.photo[-1].file_id)
-    text = "Введите цену"
-    kb = inline.home_kb()
-    await state.set_state(AdminFSM.price_award)
-    await message.answer(text, reply_markup=kb)
-
-
-@router.message(F.text, AdminFSM.price_award)
+@router.message(F.text, AdminFSM.photo_award)
 async def main_block(message: Message, state: FSMContext):
     kb = inline.home_kb()
-    try:
-        price = int(message.text)
-    except ValueError:
-        text = "Нужно ввести число"
-        await message.answer(text, reply_markup=kb)
-        return
     state_data = await state.get_data()
     await AwardsDAO.create(type_award=state_data["award_type"],
                            title=state_data["title"],
                            description=state_data["description"],
-                           photo_id=state_data["photo"],
-                           price=price)
+                           photo_id=message.photo[-1].file_id)
     text = "Вознаграждение создано"
     await message.answer(text, reply_markup=kb)

@@ -69,7 +69,6 @@ async def awards_render(user_id: str | int, award_type: Literal["with_write_down
             text = [
                 f"<u>{award['title']}</u>\n",
                 award["description"],
-                f"<b>Стоимость:</b> {award['price']} баллов"
             ]
             await bot.send_photo(chat_id=user_id, photo=award["photo_id"], caption="\n".join(text), reply_markup=kb)
     else:
@@ -99,5 +98,5 @@ async def main_block(message: Message):
 @router.message(F.text == "💡 Обменять баллы")
 async def main_block(message: Message):
     await message.delete()
-    text = "Для обмена баллов свяжитесь с администратором (Номер телефона и ссылка в вк)"
-    await message.answer(text)
+    text = "Для обмена баллов свяжитесь с администратором\n📞 +7 905 876-67-67\n🌐 https://vk.com/yodapc"
+    await message.answer(text, disable_web_page_preview=True)
