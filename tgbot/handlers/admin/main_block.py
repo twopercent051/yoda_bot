@@ -106,7 +106,7 @@ async def main_block(message: Message, state: FSMContext):
     await message.answer(text, reply_markup=kb)
 
 
-@router.message(F.text, AdminFSM.photo_award)
+@router.message(F.photo, AdminFSM.photo_award)
 async def main_block(message: Message, state: FSMContext):
     kb = inline.home_kb()
     state_data = await state.get_data()
