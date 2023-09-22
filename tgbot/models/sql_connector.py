@@ -76,6 +76,6 @@ class AwardsDAO(BaseDAO):
     @classmethod
     async def get_all(cls) -> list:
         async with async_session_maker() as session:
-            query = select(cls.model.__table__.columns).order_by(cls.model.price.asc())
+            query = select(cls.model.__table__.columns).order_by(cls.model.id.asc())
             result = await session.execute(query)
             return result.mappings().all()
